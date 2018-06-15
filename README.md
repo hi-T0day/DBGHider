@@ -40,27 +40,27 @@ Here is an example for NtClose.
 
 The original NtClose:
 ```asm
+.text:4B2E95D0 ; __stdcall NtClose(x)
 .text:4B2E95D0                 public _NtClose@4
 .text:4B2E95D0 _NtClose@4      proc near
 .text:4B2E95D0                 mov     eax, 3000Fh
 .text:4B2E95D5                 mov     edx, offset _Wow64SystemServiceCall@0
 .text:4B2E95DA                 call    edx ; Wow64SystemServiceCall()
 .text:4B2E95DC                 retn    4
-.text:4B2E95DC _NtClose@4      endp.text:4B2E95D0 ; __stdcall NtClose(x)
-
+.text:4B2E95DC _NtClose@4      endp
 ```
 
 
 The NtClose being hooked:
 ```asm
+.text:4B2E95D0 ; __stdcall NtClose(x)
 .text:4B2E95D0                 public _NtClose@4
 .text:4B2E95D0 _NtClose@4      proc near
 .text:4B2E95D0                 jmp     ntclose_hook
 .text:4B2E95D5                 mov     edx, offset _Wow64SystemServiceCall@0
 .text:4B2E95DA                 call    edx
 .text:4B2E95DC                 retn    4
-.text:4B2E95DC _NtClose@4      endp.text:4B2E95D0 ; __stdcall NtClose(x)
-
+.text:4B2E95DC _NtClose@4      endp
 ```
 
 You hooking code.
