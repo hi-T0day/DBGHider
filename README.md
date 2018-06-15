@@ -4,7 +4,7 @@ DBGHider is an IDA Pro 7.x plugin written in Python. It aims to hide IDA Winddow
 
 DBGHider uses `idaapi.DBG_Hooks` to hook the debugger:
 
-1. Patch PEB (Process Environment Bloc) and WoW PEB in function `dbg_process_start`.
+1. Patch PEB (Process Environment Block) and WoW PEB in function `dbg_process_start`.
 2. Hook functions, such as NtClose, in function `dbg_library_load`.
 
 ## Hooking
@@ -34,7 +34,7 @@ However, this hooking method has an disadvantage. Some processes check `0xCC` at
 
 ### Inline Hook
 
-To implement inline hook, DBGHider moves one or more instructions at the function entry to somewhere else, then substitue and original instruction with a `jmp 0xhhhhhhhh` instruction. And DBGHider writes your hooking code to `0xhhhhhhhh`. Your code need to decide what to do, do something then return or execute the normal function. If you decide to execute the normal function, the saved instructions need to be executed first and then jump back.
+To implement inline hook, DBGHider moves one or more instructions at the function entry to somewhere else, then substitue the originals instruction with a `jmp 0xhhhhhhhh` instruction. And DBGHider writes your hooking code to `0xhhhhhhhh`. Your code need to decide what to do, do something then return or execute the normal function. If you decide to execute the normal function, the saved instructions need to be executed first and then jump back.
 
 Here is an example for NtClose.
 
