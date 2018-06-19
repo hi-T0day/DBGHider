@@ -34,7 +34,7 @@ However, this hooking method has an disadvantage. Some processes check `0xCC` at
 
 ### Inline Hook
 
-To implement inline hook, DBGHider moves one or more instructions at the function entry to somewhere else, then substitue the originals instruction with a `jmp 0xhhhhhhhh` instruction. And DBGHider writes your hooking code to `0xhhhhhhhh`. Your code need to decide what to do, do something then return or execute the normal function. If you decide to execute the normal function, the saved instructions need to be executed first and then jump back.
+To implement inline hook, DBGHider moves one or more instructions at the function entry to somewhere else, then substitues the originals instruction with a `jmp 0xhhhhhhhh` instruction. And DBGHider writes your hooking code to `0xhhhhhhhh`. Your code need to decide what to do, do something then return or execute the normal function. If you decide to execute the normal function, the saved instructions need to be executed first and then jump back.
 
 Here is an example for NtClose.
 
@@ -80,6 +80,9 @@ Pleate note that you just need to write the code before **jmp_back**. The rest i
 
 You can change the hooking method by changing the global variable `bpt_hook` to True or False.
 
+## Install
+
+DBGHider uses [keystone](http://www.keystone-engine.org/) to assemble inline hook code. So you need to install keystone python module first, then just copy DBGHider.py to `<IDADIR>/plugins/`.
 
 ## TODO
 
